@@ -83,7 +83,6 @@ search.on("click", () => {
               var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink(book, chapter, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
               $(".list").append(scripture)
             }
-          }
         }
       }
       
