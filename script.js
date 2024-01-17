@@ -48,6 +48,7 @@ search.on("click", () => {
       
       // POST BEHAVIOR
       var resultCount = $("p.h5").length;
+      $('.results').remove()
       $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
       $('#loading').hide();
     });
