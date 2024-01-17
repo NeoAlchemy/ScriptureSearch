@@ -100,6 +100,54 @@ search.on("click", () => {
       $('#loading').hide();
     });
   }
+  if ($('#pearlOfGreatPrice:checked').length) {
+    $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/pearl-of-great-price.json", function(data) {
+      var bookCount = data.books.length;
+      for (var bookNum=0; bookNum<bookCount; bookNum++) {
+        var book    = data.books[bookNum].book;
+        var chapterCount = data.books[bookNum].chapters.length;
+        for (var chapterNum=0; chapterNum<chapterCount; chapterNum++) {
+          var chapter    = data.books[bookNum].chapters[chapterNum].chapter;
+          var verseCount = data.books[bookNum].chapters[chapterNum].verses.length;
+          for (var verseNum=0; verseNum<verseCount; verseNum++) {
+            var found = false;
+            // FOR EACH VERSE
+            
+            var verseText = data.books[bookNum].chapters[chapterNum].verses[verseNum].text;
+            var reference = data.books[bookNum].chapters[chapterNum].verses[verseNum].reference;
+            var verse     = data.books[bookNum].chapters[chapterNum].verses[verseNum].verse;
+            
+            var reggieStr = $("#reggie").val().trim();
+            
+            var reggie    = (reggieStr) ? new RegExp($("#reggie").val().trim(), 'ig') : new RegExp("blank", 'ig');
+            
+            let match;
+            var boldVerseText = verseText;
+            while ((match = reggie.exec(verseText)) !== null) {
+              found = true;
+            }
+            
+            if (found) {
+              var boldVerseText = verseText.replaceAll(reggie, (match) => {
+                return "<b>"+match+"</b>";
+              });
+              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("pgp", book, chapter, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
+              $(".list").append(scripture)
+            }
+          }
+        }
+      }
+      
+      // POST BEHAVIOR
+      var resultCount = $("p.h5").length;
+      if ($('.results').length) {
+        $('.results').html("Showing "+resultCount+" results")
+      } else {
+        $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
+      }
+      $('#loading').hide();
+    });
+  }
 })
 
 
@@ -109,6 +157,8 @@ var createSharableLink = function(scripture, book, chapter, verse) {
     return "https://www.churchofjesuschrist.org/study/scriptures/scripture/"+ abbreviations[book] +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
   if (scripture == "dc")
     return "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/"+ chapter+"?lang=eng&id=p"+verse+"#p"+verse
+  if (scripture == "pgp")
+    return "https://www.churchofjesuschrist.org/study/scriptures/pgp/"+ abbreviations[book] +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
 }
 
 var abbreviations = {
@@ -126,5 +176,10 @@ var abbreviations = {
   "4 Nephi" : "4-ne",
   "Mormon" : "morm",
   "Ether" : "ether",
-  "Moroni" : "moro"
+  "Moroni" : "moro",
+  "Moses": "moses",
+  "Abraham": "abr",
+  "Joseph Smith—Matthew": "js-m",
+  "Joseph Smith—History": "js-h",
+  "Articles Of Faith": "a-of-f"
 }
