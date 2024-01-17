@@ -62,9 +62,9 @@ search.on("click", () => {
             var found = false;
             // FOR EACH VERSE
             
-            var verseText = data.sections[bookNum].verses[verseNum].text;
-            var reference = data.sections[bookNum].verses[verseNum].reference;
-            var verse     = data.sections[bookNum].verses[verseNum].verse;
+            var verseText = data.sections[sectionNum].verses[verseNum].text;
+            var reference = data.sections[sectionNum].verses[verseNum].reference;
+            var verse     = data.sections[sectionNum].verses[verseNum].verse;
             
             var reggieStr = $("#reggie").val().trim();
             
