@@ -14,12 +14,21 @@
   <body>
     <div id="loading"></div>
     <div class="container">
+      <h1>Scripture Search</h1>
       <div class="form-group">
         <label for="reggie">Regex</label>
         <input type="text" class="form-control" id="reggie" aria-describedby="reggieHelp">
         <small id="reggieHelp" class="form-text text-muted">Search the scriptures using a RegEx expression</small>
         <small class="form-text text-muted">Example: Conditional Statements: (?&lt;!as)( if)  </small>
         <small class="form-text text-muted">Example: Law of <i>blank</i> (except Moses): (law of )(?!Moses)</small>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="bookOfMormon">
+          <label class="form-check-label" for="bookOfMormon">Book of Mormon</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="doctorineAndCovenants">
+          <label class="form-check-label" for="doctorineAndCovenants">Doctorine and Covenants</label>
+        </div>
       </div>
       <button id="search" class="btn btn-primary">Submit</button>
       <div class="list"></div>
