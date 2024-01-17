@@ -48,8 +48,11 @@ search.on("click", () => {
       
       // POST BEHAVIOR
       var resultCount = $("p.h5").length;
-      $('.results').remove()
-      $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
+      if ($('.results').length) {
+        $('.results').html("Showing "+resultCount+" results")
+      } else {
+        $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
+      }
       $('#loading').hide();
     });
   }
@@ -89,8 +92,11 @@ search.on("click", () => {
       
       // POST BEHAVIOR
       var resultCount = $("p.h5").length;
-      $('.results').remove()
-      $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
+      if ($('.results').length) {
+        $('.results').html("Showing "+resultCount+" results")
+      } else {
+        $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
+      }
       $('#loading').hide();
     });
   }
