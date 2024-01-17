@@ -39,7 +39,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink(book, chapter, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
+              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("bofm", book, chapter, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
               $(".list").append(scripture)
             }
           }
@@ -80,7 +80,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink(book, chapter, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
+              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("dc", null, sectionNum, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
               $(".list").append(scripture)
             }
         }
@@ -96,8 +96,11 @@ search.on("click", () => {
 
 
 // HELPER FUNCTIONS
-var createSharableLink = function(book, chapter, verse) {
-  return "https://www.churchofjesuschrist.org/study/scriptures/bofm/"+ abbreviations[book] +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
+var createSharableLink = function(scripture, book, chapter, verse) {
+  if (scripture == "bofm") 
+    return "https://www.churchofjesuschrist.org/study/scriptures/scripture/"+ abbreviations[book] +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
+  if (scripture == "dc")
+    return "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/"+ chapter+"?lang=eng&id=p"+verse+"#p"+verse
 }
 
 var abbreviations = {
