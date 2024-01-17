@@ -80,7 +80,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("dc", null, sectionNum, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
+              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("dc", null, sectionNum + 1, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
               $(".list").append(scripture)
             }
         }
@@ -88,6 +88,7 @@ search.on("click", () => {
       
       // POST BEHAVIOR
       var resultCount = $("p.h5").length;
+      $('.results').remove()
       $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
       $('#loading').hide();
     });
