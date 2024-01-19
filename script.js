@@ -13,6 +13,16 @@ search.on("click", () => {
       searchScriptures(data)
     });
   }
+  if ($('#oldTestament:checked').length) {
+    $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/old-testament.json", function(data) {
+      searchScriptures(data)
+    });
+  }
+  if ($('#newTestament:checked').length) {
+    $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/new-testament.json", function(data) {
+      searchScriptures(data)
+    });
+  }
   if ($('#doctorineAndCovenants:checked').length) {
     $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/doctrine-and-covenants.json", function(data) {
       var scripture_slug = data.lds_slug;
@@ -66,7 +76,7 @@ search.on("click", () => {
 })
 
 var searchScriptures = function(data) {
-	var scripture_slug = data.lds_slug;
+  var scripture_slug = data.lds_slug;
   var bookCount = data.books.length;
   for (var bookNum=0; bookNum<bookCount; bookNum++) {
     var book    = data.books[bookNum].book;
@@ -121,5 +131,5 @@ var createSharableLink = function(scripture, book, chapter, verse) {
   if (scripture == "dc")
     return "https://www.churchofjesuschrist.org/study/scriptures/"+ scripture +"/"+ chapter+"?lang=eng&id=p"+verse+"#p"+verse
   else
-	  return "https://www.churchofjesuschrist.org/study/scriptures/"+ scripture + "/"+ book +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
+    return "https://www.churchofjesuschrist.org/study/scriptures/"+ scripture + "/"+ book +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
 }
