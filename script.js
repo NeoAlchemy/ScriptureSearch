@@ -128,7 +128,7 @@ var searchScriptures = function(data) {
 
 // HELPER FUNCTIONS
 var createSharableLink = function(scripture, book, chapter, verse) {
-  if (scripture == "dc")
+  if (scripture == "dc-testament/dc")
     return "https://www.churchofjesuschrist.org/study/scriptures/"+ scripture +"/"+ chapter+"?lang=eng&id=p"+verse+"#p"+verse
   else
     return "https://www.churchofjesuschrist.org/study/scriptures/"+ scripture + "/"+ book +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
