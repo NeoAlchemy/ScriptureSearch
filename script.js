@@ -76,6 +76,7 @@ search.on("click", () => {
 })
 
 var searchScriptures = function(data) {
+  var foundCount = 0;
   var scripture_slug = data.lds_slug;
   var bookCount = data.books.length;
   for (var bookNum=0; bookNum<bookCount; bookNum++) {
@@ -103,6 +104,7 @@ var searchScriptures = function(data) {
         }
 
         if (found) {
+          foundCount++
           var boldVerseText = verseText.replaceAll(reggie, (match) => {
             return "<b>"+match+"</b>";
           });
@@ -117,6 +119,7 @@ var searchScriptures = function(data) {
   }
 
   // POST BEHAVIOR
+  $('#'+scripture_slug+'Count').html("("+foundCount"+")")
   var resultCount = $("p.h5").length;
   if ($('.results').length) {
     $('.results').html("Showing "+resultCount+" results")
