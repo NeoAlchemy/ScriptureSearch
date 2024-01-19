@@ -66,7 +66,7 @@ search.on("click", () => {
       }
       
       // POST BEHAVIOR
-      $('#'+scripture_slug+'Count').html("("+foundCount"+")")
+      $('#'+scripture_slug+'Count').html("("+foundCount+")")
       var resultCount = $("p.h5").length;
       if ($('.results').length) {
         $('.results').html("Showing "+resultCount+" results")
@@ -127,7 +127,7 @@ var searchScriptures = function(data) {
   }
 
   // POST BEHAVIOR
-  $('#'+scripture_slug+'Count').html("("+foundCount"+")")
+  $('#'+scripture_slug+'Count').html("("+foundCount+")")
   var resultCount = $("p.h5").length;
   if ($('.results').length) {
     $('.results').html("Showing "+resultCount+" results")
