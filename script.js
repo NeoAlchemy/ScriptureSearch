@@ -10,54 +10,12 @@ search.on("click", () => {
   $('#loading').show();
   if ($('#bookOfMormon:checked').length) {
     $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/book-of-mormon.json", function(data) {
-      var bookCount = data.books.length;
-      for (var bookNum=0; bookNum<bookCount; bookNum++) {
-        var book    = data.books[bookNum].book;
-        var chapterCount = data.books[bookNum].chapters.length;
-        for (var chapterNum=0; chapterNum<chapterCount; chapterNum++) {
-          var chapter    = data.books[bookNum].chapters[chapterNum].chapter;
-          var verseCount = data.books[bookNum].chapters[chapterNum].verses.length;
-          for (var verseNum=0; verseNum<verseCount; verseNum++) {
-            var found = false;
-            // FOR EACH VERSE
-            
-            var verseText = data.books[bookNum].chapters[chapterNum].verses[verseNum].text;
-            var reference = data.books[bookNum].chapters[chapterNum].verses[verseNum].reference;
-            var verse     = data.books[bookNum].chapters[chapterNum].verses[verseNum].verse;
-            
-            var reggieStr = $("#reggie").val().trim();
-            
-            var reggie    = (reggieStr) ? new RegExp($("#reggie").val().trim(), 'ig') : new RegExp("blank", 'ig');
-            
-            let match;
-            var boldVerseText = verseText;
-            while ((match = reggie.exec(verseText)) !== null) {
-              found = true;
-            }
-            
-            if (found) {
-              var boldVerseText = verseText.replaceAll(reggie, (match) => {
-                return "<b>"+match+"</b>";
-              });
-              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("bofm", book, chapter, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
-              $(".list").append(scripture)
-            }
-          }
-        }
-      }
-      
-      // POST BEHAVIOR
-      var resultCount = $("p.h5").length;
-      if ($('.results').length) {
-        $('.results').html("Showing "+resultCount+" results")
-      } else {
-        $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
-      }
-      $('#loading').hide();
+      searchScriptures(data)
     });
   }
   if ($('#doctorineAndCovenants:checked').length) {
     $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/doctrine-and-covenants.json", function(data) {
+      var scripture_slug = data.lds_slug;
       var sectionCount = data.sections.length;
       for (var sectionNum=0; sectionNum<sectionCount; sectionNum++) {
         var section    = data.sections[sectionNum].section;
@@ -84,7 +42,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("dc", null, sectionNum + 1, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
+              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink(scripture_slug, null, sectionNum + 1, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
               $(".list").append(scripture)
             }
         }
@@ -102,84 +60,66 @@ search.on("click", () => {
   }
   if ($('#pearlOfGreatPrice:checked').length) {
     $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/pearl-of-great-price.json", function(data) {
-      var bookCount = data.books.length;
-      for (var bookNum=0; bookNum<bookCount; bookNum++) {
-        var book    = data.books[bookNum].book;
-        var chapterCount = data.books[bookNum].chapters.length;
-        for (var chapterNum=0; chapterNum<chapterCount; chapterNum++) {
-          var chapter    = data.books[bookNum].chapters[chapterNum].chapter;
-          var verseCount = data.books[bookNum].chapters[chapterNum].verses.length;
-          for (var verseNum=0; verseNum<verseCount; verseNum++) {
-            var found = false;
-            // FOR EACH VERSE
-            
-            var verseText = data.books[bookNum].chapters[chapterNum].verses[verseNum].text;
-            var reference = data.books[bookNum].chapters[chapterNum].verses[verseNum].reference;
-            var verse     = data.books[bookNum].chapters[chapterNum].verses[verseNum].verse;
-            
-            var reggieStr = $("#reggie").val().trim();
-            
-            var reggie    = (reggieStr) ? new RegExp($("#reggie").val().trim(), 'ig') : new RegExp("blank", 'ig');
-            
-            let match;
-            var boldVerseText = verseText;
-            while ((match = reggie.exec(verseText)) !== null) {
-              found = true;
-            }
-            
-            if (found) {
-              var boldVerseText = verseText.replaceAll(reggie, (match) => {
-                return "<b>"+match+"</b>";
-              });
-              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink("pgp", book, chapter, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
-              $(".list").append(scripture)
-            }
-          }
-        }
-      }
-      
-      // POST BEHAVIOR
-      var resultCount = $("p.h5").length;
-      if ($('.results').length) {
-        $('.results').html("Showing "+resultCount+" results")
-      } else {
-        $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
-      }
-      $('#loading').hide();
+      searchScriptures(data)
     });
   }
 })
 
+var searchScriptures = function(data) {
+	var scripture_slug = data.lds_slug;
+  var bookCount = data.books.length;
+  for (var bookNum=0; bookNum<bookCount; bookNum++) {
+    var book    = data.books[bookNum].book;
+    var chapterCount = data.books[bookNum].chapters.length;
+    for (var chapterNum=0; chapterNum<chapterCount; chapterNum++) {
+      var chapter    = data.books[bookNum].chapters[chapterNum].chapter;
+      var verseCount = data.books[bookNum].chapters[chapterNum].verses.length;
+      for (var verseNum=0; verseNum<verseCount; verseNum++) {
+        var found = false;
+        // FOR EACH VERSE
+
+        var verseText = data.books[bookNum].chapters[chapterNum].verses[verseNum].text;
+        var reference = data.books[bookNum].chapters[chapterNum].verses[verseNum].reference;
+        var verse     = data.books[bookNum].chapters[chapterNum].verses[verseNum].verse;
+        var book_slug = data.books[bookNum].lds_slug
+
+        var reggieStr = $("#reggie").val().trim();
+        var reggie    = (reggieStr) ? new RegExp($("#reggie").val().trim(), 'ig') : new RegExp("blank", 'ig');
+
+        let match;
+        var boldVerseText = verseText;
+        while ((match = reggie.exec(verseText)) !== null) {
+          found = true;
+        }
+
+        if (found) {
+          var boldVerseText = verseText.replaceAll(reggie, (match) => {
+            return "<b>"+match+"</b>";
+          });
+          var scripture = "<p class='h5 text-primary'>";
+          scripture = scripture + "<a href='"+createSharableLink(scripture_slug, book_slug, chapter, verse)
+          scripture = scripture + "' target='_blank'>"+reference+"</a>"
+          scripture = scripture + "</p><p>"+verse+". " + boldVerseText+"</p><hr>";
+          $(".list").append(scripture)
+        }
+      }
+    }
+  }
+
+  // POST BEHAVIOR
+  var resultCount = $("p.h5").length;
+  if ($('.results').length) {
+    $('.results').html("Showing "+resultCount+" results")
+  } else {
+    $(".list").prepend("<div class='results'>Showing "+resultCount+" results</div>");
+  }
+  $('#loading').hide();
+}
 
 // HELPER FUNCTIONS
 var createSharableLink = function(scripture, book, chapter, verse) {
-  if (scripture == "bofm") 
-    return "https://www.churchofjesuschrist.org/study/scriptures/scripture/"+ abbreviations[book] +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
   if (scripture == "dc")
-    return "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/"+ chapter+"?lang=eng&id=p"+verse+"#p"+verse
-  if (scripture == "pgp")
-    return "https://www.churchofjesuschrist.org/study/scriptures/pgp/"+ abbreviations[book] +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
-}
-
-var abbreviations = {
-  "1 Nephi" : "1-ne",
-  "2 Nephi" : "1-ne",
-  "Jacob" : "jacob",
-  "Enos" : "enos",
-  "Jarom" : "jarom",
-  "Omni" : "omni",
-  "Words of Mormon": "w-of-m",
-  "Mosiah" : "mosiah",
-  "Alma" : "alma",
-  "Helaman" : "hel",
-  "3 Nephi" : "3-ne",
-  "4 Nephi" : "4-ne",
-  "Mormon" : "morm",
-  "Ether" : "ether",
-  "Moroni" : "moro",
-  "Moses": "moses",
-  "Abraham": "abr",
-  "Joseph Smith—Matthew": "js-m",
-  "Joseph Smith—History": "js-h",
-  "Articles Of Faith": "a-of-f"
+    return "https://www.churchofjesuschrist.org/study/scriptures/"+ scripture +"/"+ chapter+"?lang=eng&id=p"+verse+"#p"+verse
+  else
+	  return "https://www.churchofjesuschrist.org/study/scriptures/"+ scripture + "/"+ book +"/"+chapter+"?lang=eng&id=p"+verse+"#p"+verse
 }
