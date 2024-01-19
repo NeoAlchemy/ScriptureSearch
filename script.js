@@ -66,7 +66,7 @@ search.on("click", () => {
       }
       
       // POST BEHAVIOR
-      $('#dcCount').html("("+foundCount+")")
+      $('#dcCount').html("("+foundCount+")") 
       var resultCount = $("p.h5").length;
       if ($('.results').length) {
         $('.results').html("Showing "+resultCount+" results")
