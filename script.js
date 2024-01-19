@@ -2,6 +2,13 @@
 var search = $("#search")
 var $loading = $('#loading').hide();
 
+$('#reggie').on("keyup", (event) => {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        search.click();
+    }
+});
+
 // handle click and add class
 search.on("click", () => {
   // PREPERATION
