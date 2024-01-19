@@ -8,6 +8,11 @@ search.on("click", () => {
   // clean up list
   $(".list").empty();
   $('#loading').show();
+  $('#bofmCount').empty();
+  $('#dcCount').empty();
+  $('#pgpCount').empty();
+  $('#otCount').empty();
+  $('#ntCount').empty();
   if ($('#bookOfMormon:checked').length) {
     $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/book-of-mormon.json", function(data) {
       searchScriptures(data)
@@ -25,6 +30,7 @@ search.on("click", () => {
   }
   if ($('#doctorineAndCovenants:checked').length) {
     $.getJSON("https://raw.githubusercontent.com/bcbooks/scriptures-json/master/doctrine-and-covenants.json", function(data) {
+      var foundCount = 0;
       var scripture_slug = data.lds_slug;
       var sectionCount = data.sections.length;
       for (var sectionNum=0; sectionNum<sectionCount; sectionNum++) {
@@ -49,6 +55,7 @@ search.on("click", () => {
             }
             
             if (found) {
+              foundCount++
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
@@ -59,6 +66,7 @@ search.on("click", () => {
       }
       
       // POST BEHAVIOR
+      $('#'+scripture_slug+'Count').html("("+foundCount"+")")
       var resultCount = $("p.h5").length;
       if ($('.results').length) {
         $('.results').html("Showing "+resultCount+" results")
