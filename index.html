@@ -17,10 +17,13 @@
       <h1>Scripture Search</h1>
       <div class="form-group">
         <label for="reggie">Regex</label>
-        <input type="text" class="form-control" id="reggie" aria-describedby="reggieHelp">
+        <div class="form-inline">
+          <input type="text" class="form-control" id="reggie" aria-describedby="reggieHelp">
+          <button id="search" class="btn btn-primary">Submit</button>
+        </div>
         <small id="reggieHelp" class="form-text text-muted">Search the scriptures using a RegEx expression</small><br/>
         <small class="form-text text-muted">Example: Conditional Statements: (?&lt;!as)( if)  </small><br/>
-        <small class="form-text text-muted">Example: Law of <i>blank</i> (except Moses): (law of )(?!Moses)</small><br/>
+        <small class="form-text text-muted">Example: Law of <i>blank</i> (except Moses): (law of )(?!Moses)</small><br/><br/>
         <div class="form-check form-switch form-check-inline">
           <input class="form-check-input" type="checkbox" role="switch" id="bookOfMormon" checked>
           <label class="form-check-label" for="bookOfMormon">Book of Mormon</label>&nbsp;<small class="text-muted" id="bofmCount"></small>
@@ -42,7 +45,6 @@
           <label class="form-check-label" for="oldTestament">Old Testament</label>&nbsp;<small class="text-muted" id="otCount"></small>
         </div>
       </div>
-      <button id="search" class="btn btn-primary">Submit</button>
       <div class="list"></div>
     </div>
     <script type="text/javascript" src="script.js"></script>
