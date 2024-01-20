@@ -15,12 +15,16 @@
     <div id="loading"></div>
     <div class="container">
       <h1>Scripture Search</h1>
-      <div class="form-group">
-        <label for="reggie">Regex</label>
-        <div class="form-inline">
-          <input type="text" class="form-control" id="reggie" aria-describedby="reggieHelp">
-          <button id="search" class="btn btn-primary">Submit</button>
-        </div>
+      <form class="row row-cols-lg-auto g-3 align-items-center">
+        <div class="col-12">
+          <label class="visually-hidden" for="inlineFormInputGroupUsername">RegEx</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="reggie" placeholder="">
+          </div>
+          <div class="col-12">
+            <button type="submit" id="search" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
         <small id="reggieHelp" class="form-text text-muted">Search the scriptures using a RegEx expression</small><br/>
         <small class="form-text text-muted">Example: Conditional Statements: (?&lt;!as)( if)  </small><br/>
         <small class="form-text text-muted">Example: Law of <i>blank</i> (except Moses): (law of )(?!Moses)</small><br/><br/>
