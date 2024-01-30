@@ -67,7 +67,7 @@ search.on("click", () => {
                 return "<b>"+match+"</b>";
               });
               var scripture = '<div class="card shadow p-2 mb-3 bg-white bg-body-tertiary rounded">'
-              scripture = scripture + '<div class="card-body">
+              scripture = scripture + '<div class="card-body">'
               scripture = scripture + '<h5 class="card-title">'+reference+'</h5>'
               scripture = scripture + '<p class="card-text">'+verse+'. '+ boldVerseText+'</p>'
               scripture = scripture + '<a href="'+createSharableLink(scripture_slug, null, sectionNum + 1, verse)+'" class="card-link">Go to Scripture</a>'
