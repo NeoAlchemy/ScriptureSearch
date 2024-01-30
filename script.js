@@ -84,7 +84,7 @@ search.on("click", () => {
       if ($('.results').length) {
         $('.results').html("Showing "+resultCount+" results")
       } else {
-        $(".heading").append("<div class='results'>Showing "+resultCount+" results</div>");
+        $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
       }
       $('#loading').hide();
     });
@@ -136,6 +136,7 @@ var searchScriptures = function(data) {
           scripture = scripture + '<a href="'+createSharableLink(scripture_slug, book_slug, chapter, verse)+'" class="card-link">Go to Scripture</a>'
           scripture = scripture + '</div>'
           scripture = scripture + '</div>'
+          $(".list").append(scripture)
         }
       }
     }
@@ -147,7 +148,7 @@ var searchScriptures = function(data) {
   if ($('.results').length) {
     $('.results').html("Showing "+resultCount+" results")
   } else {
-    $(".heading").append("<div class='results'>Showing "+resultCount+" results</div>");
+    $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
   }
   $('#loading').hide();
 }
