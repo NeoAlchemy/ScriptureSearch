@@ -66,7 +66,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = '<div class="card"><div class="card-body"><h5 class="card-title">'+reference+'</h5><p class="card-text">'+verse+'. '+ boldVerseText+'</p><a href="'+createSharableLink(scripture_slug, null, sectionNum + 1, verse)+'" class="card-link">Go to Scripture</a></div></div>'
+              var scripture = '<div class="card shadow p-3 mb-5 bg-white bg-body-tertiary rounded"><div class="card-body"><h5 class="card-title">'+reference+'</h5><p class="card-text">'+verse+'. '+ boldVerseText+'</p><a href="'+createSharableLink(scripture_slug, null, sectionNum + 1, verse)+'" class="card-link">Go to Scripture</a></div></div>'
               $(".list").append(scripture)
             }
         }
@@ -123,11 +123,13 @@ var searchScriptures = function(data) {
           var boldVerseText = verseText.replaceAll(reggie, (match) => {
             return "<b>"+match+"</b>";
           });
-          var scripture = "<p class='h5 text-primary'>";
-          scripture = scripture + "<a href='"+createSharableLink(scripture_slug, book_slug, chapter, verse)
-          scripture = scripture + "' target='_blank'>"+reference+"</a>"
-          scripture = scripture + "</p><p>"+verse+". " + boldVerseText+"</p><hr>";
-          $(".list").append(scripture)
+          var scripture = '<div class="card shadow p-3 mb-5 bg-white bg-body-tertiary rounded">'
+          scripture = scripture + '<div class="card-body">'
+          scripture = scripture + '<h5 class="card-title">'+reference+'</h5>'
+          scripture = scripture + '<p class="card-text">'+verse+'. '+ boldVerseText+'</p>'
+          scripture = scripture + '<a href="'+createSharableLink(scripture_slug, book_slug, chapter, verse)+'" class="card-link">Go to Scripture</a>'
+          scripture = scripture + '</div>'
+          scripture = scripture + '</div>'
         }
       }
     }
