@@ -66,7 +66,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = "<p class='h5 text-primary'><a href='"+createSharableLink(scripture_slug, null, sectionNum + 1, verse)+"' target='_blank'>"+reference+"</a></p><p>"+verse+". " + boldVerseText+"</p><hr>";
+              var scripture = '<div class="card"><div class="card-body"><h5 class="card-title">'+reference+'</h5><p class="card-text">'+verse+'. '+ boldVerseText+'</p><a href="'+createSharableLink(scripture_slug, null, sectionNum + 1, verse)+'" class="card-link">Go to Scripture</a></div></div>'
               $(".list").append(scripture)
             }
         }
