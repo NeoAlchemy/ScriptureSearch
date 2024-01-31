@@ -71,7 +71,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = '<div class="">'
+              var scripture = '<div class="col">'
               scripture = scripture + '<div class="card shadow p-2 mb-3 bg-white bg-body-tertiary rounded">'
               scripture = scripture + '<div class="card-body">'
               scripture = scripture + '<h5 class="card-title">'+reference+'</h5>'
@@ -138,7 +138,7 @@ var searchScriptures = function(data) {
           var boldVerseText = verseText.replaceAll(reggie, (match) => {
             return "<b>"+match+"</b>";
           });
-          var scripture = '<div class="">'
+          var scripture = '<div class="col">'
           scripture = scripture + '<div class="card shadow p-2 mb-3 bg-white bg-body-tertiary rounded">'
           scripture = scripture + '<div class="card-body">'
           scripture = scripture + '<h5 class="card-title">'+reference+'</h5>'
