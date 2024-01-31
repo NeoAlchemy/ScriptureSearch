@@ -81,7 +81,7 @@ search.on("click", () => {
               scripture = scripture + '</div>'
               scripture = scripture + '</div>'
               scripture = scripture + '</div>'
-              $(".list").append(scripture)
+              $(".list").append(scripture).masonry( 'appended', $(scripture) );
             }
         }
       }
@@ -148,7 +148,7 @@ var searchScriptures = function(data) {
           scripture = scripture + '</div>'
           scripture = scripture + '</div>'
           scripture = scripture + '</div>'
-          $(".list").append(scripture)
+          $(".list").append(scripture).masonry( 'appended', $(scripture) );
         }
       }
     }
