@@ -13,8 +13,11 @@
 }
 
 .card {
-  width: 25rem;
   margin: 5px
+}
+
+.grid-sizer, .card {
+  width: 33.333%
 }
 
 #loading {
