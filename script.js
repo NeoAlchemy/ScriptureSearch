@@ -89,7 +89,7 @@ search.on("click", () => {
         $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
       }
       $('#loading').hide();
-      var $grid = $('.row').imagesLoaded( function() {
+      var $grid = $('.list.row').imagesLoaded( function() {
         // init Masonry after all images have loaded
         $grid.masonry({
             percentPosition: true
@@ -162,7 +162,7 @@ var searchScriptures = function(data) {
   }
   $('#loading').hide();
 
-  var $grid = $('.row').imagesLoaded( function() {
+  var $grid = $('.list.row').imagesLoaded( function() {
     // init Masonry after all images have loaded
     $grid.masonry({
         percentPosition: true
