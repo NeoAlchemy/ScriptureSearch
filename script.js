@@ -10,8 +10,7 @@ $('#reggie').on("keyup", (event) => {
 });
 
 var $grid = $('.list.row').masonry({
-  percentPosition: true,
-  columnWidth: 120
+  percentPosition: true
 });
 
 // handle click and add class
