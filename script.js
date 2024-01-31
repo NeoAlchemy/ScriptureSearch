@@ -94,9 +94,8 @@ search.on("click", () => {
         $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
       }
       $('#loading').hide();
-      $grid.imagesLoaded().progress( function() {
-          $grid.masonry('layout');
-      });
+      $grid.masonry('layout');
+      
     });
   }
   if ($('#pearlOfGreatPrice:checked').length) {
@@ -164,9 +163,8 @@ var searchScriptures = function(data) {
   }
   $('#loading').hide();
 
-  $grid.imagesLoaded().progress( function() {
-      $grid.masonry('layout');
-  });
+  $grid.masonry('layout');
+  
 }
 
 // HELPER FUNCTIONS
