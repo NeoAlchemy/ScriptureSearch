@@ -80,7 +80,7 @@ search.on("click", () => {
       
       // POST BEHAVIOR
       $('#dcCount').html("("+foundCount+")") 
-      var resultCount = $("card").length;
+      var resultCount = $(".card").length;
       if ($('.results').length) {
         $('.results').html("Showing "+resultCount+" results")
       } else {
@@ -144,7 +144,7 @@ var searchScriptures = function(data) {
 
   // POST BEHAVIOR
   $('#'+scripture_slug+'Count').html("("+foundCount+")")
-  var resultCount = $("card").length;
+  var resultCount = $(".card").length;
   if ($('.results').length) {
     $('.results').html("Showing "+resultCount+" results")
   } else {
