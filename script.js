@@ -89,6 +89,12 @@ search.on("click", () => {
         $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
       }
       $('#loading').hide();
+      var $grid = $('.grid').imagesLoaded( function() {
+        // init Masonry after all images have loaded
+        $grid.masonry({
+            percentPosition: true;
+        });
+      });
     });
   }
   if ($('#pearlOfGreatPrice:checked').length) {
@@ -155,6 +161,13 @@ var searchScriptures = function(data) {
     $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
   }
   $('#loading').hide();
+
+  var $grid = $('.grid').imagesLoaded( function() {
+    // init Masonry after all images have loaded
+    $grid.masonry({
+        percentPosition: true;
+    });
+  });
 }
 
 // HELPER FUNCTIONS
