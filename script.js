@@ -95,7 +95,8 @@ search.on("click", () => {
         $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
       }
       $('#loading').hide();
-      
+
+      $grid.masonry('layout');
       
     });
   }
@@ -164,7 +165,7 @@ var searchScriptures = function(data) {
   }
   $('#loading').hide();
 
-  
+  $grid.masonry('layout');
   
 }
 
