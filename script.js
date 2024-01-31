@@ -92,7 +92,7 @@ search.on("click", () => {
       var $grid = $('.grid').imagesLoaded( function() {
         // init Masonry after all images have loaded
         $grid.masonry({
-            percentPosition: true;
+            percentPosition: true
         });
       });
     });
@@ -165,7 +165,7 @@ var searchScriptures = function(data) {
   var $grid = $('.grid').imagesLoaded( function() {
     // init Masonry after all images have loaded
     $grid.masonry({
-        percentPosition: true;
+        percentPosition: true
     });
   });
 }
