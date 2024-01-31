@@ -66,7 +66,7 @@ search.on("click", () => {
               var boldVerseText = verseText.replaceAll(reggie, (match) => {
                 return "<b>"+match+"</b>";
               });
-              var scripture = '<div class="col-sm-6 col-lg-4 mb-4">'
+              var scripture = '<div class="col-sm-6 col-lg-4 mb-4" style="position: absolute;">'
               scripture = scripture + '<div class="card shadow p-2 mb-3 bg-white bg-body-tertiary rounded">'
               scripture = scripture + '<div class="card-body">'
               scripture = scripture + '<h5 class="card-title">'+reference+'</h5>'
