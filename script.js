@@ -9,6 +9,10 @@ $('#reggie').on("keyup", (event) => {
     }
 });
 
+var $grid = $('.list.row').masonry({
+  percentPosition: true
+});
+
 // handle click and add class
 search.on("click", () => {
   // PREPERATION
@@ -89,11 +93,8 @@ search.on("click", () => {
         $("#heading").append("<div class='results'>Showing "+resultCount+" results</div>");
       }
       $('#loading').hide();
-      var $grid = $('.list.row').imagesLoaded( function() {
-        // init Masonry after all images have loaded
-        $grid.masonry({
-            percentPosition: true
-        });
+      $grid.imagesLoaded().progress( function() {
+          $grid.masonry('layout');
       });
     });
   }
@@ -162,11 +163,8 @@ var searchScriptures = function(data) {
   }
   $('#loading').hide();
 
-  var $grid = $('.list.row').imagesLoaded( function() {
-    // init Masonry after all images have loaded
-    $grid.masonry({
-        percentPosition: true
-    });
+  $grid.imagesLoaded().progress( function() {
+      $grid.masonry('layout');
   });
 }
 
